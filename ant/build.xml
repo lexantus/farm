@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<project name="farm_web" basedir="../">
+    <property name="game.version" value="0.0.1"/>
+
+    <target name="buildinfo">
+        <propertyfile file="ant/rozhin_alex.properties">
+            <entry key="game.version" value="${game.version}"/>
+        </propertyfile>
+    </target>
+
+    <target name="clean">
+        <delete dir="out"/>
+        <delete dir="swf"/>
+    </target>
+
+    <property name="flashProEXE" value="c:/Program Files (x86)/Adobe/Adobe Flash CS6/Flash.exe"/>
+    <property name="jsflFile" value="../jsfl/fla_autocompile.jsfl"/>
+
+    <target name="build" depends="clean">
+        <mkdir dir="swf"/>
+        <mkdir dir="swf/lib"/>
+        <exec dir="swf" executable="${flashProEXE}">
+            <arg line="${jsflFile}"/>
+        </exec>
+        <mkdir dir="out"/>
+        <buildnumber file="ant/build.number"/>
+        <copydir src="swf" dest="out" includes="*.swf"/>
+        <copydir src="swf/lib" dest="out/lib" includes="*.swf"/>
+    </target>
+
+    <property name="folderToCreateMVC" value="src/ui/hud"/>
+
+    <target name="mvc_create_in_folder">
+        <mkdir dir="${folderToCreateMVC}/model"/>
+        <mkdir dir="${folderToCreateMVC}/view"/>
+        <mkdir dir="${folderToCreateMVC}/controller"/>
+    </target>
+
+    <target name="create_dir_in_src">
+        <mkdir dir="src/ui/hud"/>
+    </target>
+</project>

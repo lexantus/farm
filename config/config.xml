@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+0 - empty
+1 - cow
+2 - chicken
+3 - wheat
+-->
+
+<field>
+    <row id="0" content="1100000000000000"/>
+    <row id="1" content="1230000000000000"/>
+    <row id="2" content="0000000000000000"/>
+    <row id="3" content="0000000000000000"/>
+    <row id="4" content="0000022000000000"/>
+    <row id="5" content="0000000000000000"/>
+    <row id="6" content="0001110000000000"/>
+    <row id="7" content="0000000000000000"/>
+    <row id="8" content="0000000000000000"/>
+    <row id="9" content="0000000000000000"/>
+    <row id="10" content="0000000000000000"/>
+    <row id="11" content="0000000000000000"/>
+    <row id="12" content="0000000022000000"/>
+    <row id="13" content="0022000000000000"/>
+    <row id="14" content="0000000000000000"/>
+    <row id="15" content="0000000000000000"/>
+</field>
