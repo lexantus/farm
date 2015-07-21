@@ -11,12 +11,16 @@ package
     import flash.events.ProgressEvent;
     import flash.net.URLRequest;
     import flash.system.Security;
+    import flash.ui.ContextMenu;
+    import flash.ui.ContextMenuItem;
+
+    import interfaces.ICustomizeContextMenu;
 
     import utils.debug.Debug;
     import utils.loader.SWFAssetsLoader;
 
     [SWF(width="1280", height="800", frameRate="24", backgroundColor="#333333")]
-    public class Preloader extends Sprite
+    public class Preloader extends Sprite implements ICustomizeContextMenu
     {
         private const GAME_SWF_NAME:String = "farm.swf";
 
@@ -25,9 +29,13 @@ package
         private var _urlReq:URLRequest;
         private var _loader:Loader;
 
+        private var _contextMenu:ContextMenu;
+
         public function Preloader()
         {
             Security.allowDomain("*");
+
+            initContextMenu();
 
             _loader = new Loader();
             _swfAssetsLoader = new SWFAssetsLoader(_loader, completeLoadAllGameAssetsSwf);
@@ -47,6 +55,33 @@ package
             _urlReq = new URLRequest(GAME_SWF_NAME);
             _loader.load(_urlReq);
             addChild(_loader);
+        }
+
+        public function initContextMenu():void
+        {
+            if (!_contextMenu)
+            {
+                _contextMenu = new ContextMenu();
+                removeDefaultItems();
+                addCustomMenuItems();
+                contextMenu = _contextMenu;
+            }
+        }
+
+        public function removeDefaultItems():void
+        {
+            if (!_contextMenu)
+            {
+                throw new Error("_contextMenu prop does not exist");
+            }
+
+            _contextMenu.hideBuiltInItems();
+        }
+
+        public function addCustomMenuItems():void
+        {
+            var item:ContextMenuItem = new ContextMenuItem("FARM GAME ver. 0.0.1")
+            _contextMenu.customItems.push(item);
         }
 
         private function addLoaderListeners(contentLoaderInfo:LoaderInfo):void
